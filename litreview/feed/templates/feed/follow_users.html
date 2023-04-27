@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Suivre des utilisateurs</h2>
+    <form method="post">
+        {{ form.followed_user.label_tag }} {{ form.followed_user }}
+        {% csrf_token %}
+        <button type="submit" >Confirmer</button>
+    </form>
+{% endblock content %}
+
+

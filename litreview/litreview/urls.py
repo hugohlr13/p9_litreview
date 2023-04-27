@@ -15,7 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+
+import authentication.views
+import feed.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', authentication.views.login_page, name='login'),
+    path('logout/', authentication.views.logout_user, name='logout'),
+    path('signup', authentication.views.signup_page, name='signup'),
+    path('home/', feed.views.home, name='home'),
+    path('create_ticket/', feed.views.create_ticket, name='create_ticket'),
+    path('create_review/', feed.views.create_review, name='create_review'),
+    path('follow-users/', feed.views.follow_users, name='follow_users'),
+    path('following-list/', feed.views.following_list, name='following_list'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

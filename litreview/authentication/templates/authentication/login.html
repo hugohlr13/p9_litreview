@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page de connexion</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      .logo {
+        font-size: 0,5rem;
+        text-align: center;
+      }
+
+      .left {
+        text-align: center;
+        margin-left: 15rem;
+      }
+
+      .right {
+        text-align: center;
+        margin-right: 15rem;
+      }
+
+      .form-group {
+        margin-bottom: 0.5rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group input[type="text"],
+      .form-group input[type="password"] {
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .form-group button {
+        align-self: flex-end;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">LITReview</div>
+    </div>
+    
+    <div class="container">
+      <div class="left">
+        <h2>Inscrivez-vous maintenant</h2>
+        <button><a href="{% url 'signup' %}">S'inscrire</a></button>
+      </div>
+      <div class="right">
+        <h2>Connectez-vous</h2>
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" placeholder="Nom d'utilisateur">
+          </div>
+          <div class="form-group">
+            <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" placeholder="Mot de passe">
+            <button type="submit">Se connecter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
