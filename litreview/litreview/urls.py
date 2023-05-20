@@ -26,11 +26,13 @@ urlpatterns = [
     path('', authentication.views.login_page, name='login'),
     path('logout/', authentication.views.logout_user, name='logout'),
     path('signup', authentication.views.signup_page, name='signup'),
-    path('home/', feed.views.home, name='home'),
+    path('feed/', feed.views.feed, name='home'),
     path('create_ticket/', feed.views.create_ticket, name='create_ticket'),
     path('create_review/', feed.views.create_review, name='create_review'),
     path('follow-users/', feed.views.follow_users, name='follow_users'),
-    path('following-list/', feed.views.following_list, name='following_list'),
+    path('review/<int:review_id>/', feed.views.review_snippet, name='review_snippet'),
+    path('ticket/<int:ticket_id>/', feed.views.ticket_snippet, name='ticket_snippet'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

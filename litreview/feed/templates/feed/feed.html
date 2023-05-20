@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>Vous êtes connecté !</p>
+
+    <h1>Feed</h1>
+    <a href="{% url 'create_ticket' %}" class="btn btn-primary">Demander une critique</a>
+    <a href="{% url 'create_review' %}" class="btn btn-primary">Créer une critique</a>
+    <a href="{% url 'follow_users' %}" class="btn btn-primary">Suivre des utilisateurs</a>
+    
+    {% for post in posts %}
+        {% if post.content_type == 'TICKET' %} 
+            {% include 'feed/ticket_snippet.html' with ticket=post %}   
+        {% elif post.content_type == 'REVIEW' %}
+            {% include 'feed/review_snippet.html' with review=post %}
+        {% endif %}
+    {% endfor %}
+{% endblock content %}
