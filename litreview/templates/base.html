@@ -1,12 +1,16 @@
-<html>
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="fr">
     <head>
+        <meta charset="UTF-8">
         <title>Litreview</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}"/>
     </head>
     <body>
-        <h1>Litreview</h1>
-        {% block content %}{% endblock content %}
-        {%  if user.is_authenticated %}
-            <p>Vous êtes connecté en tant que {{ user }}. <br> <a href="{% url 'logout' %}">Se déconnecter</a></p>
-        {% endif %}
+        <div class="navbar">
+            <div class="logo">LITReview</div>
+        </div>
+        {% block content %}{% endblock %}
     </body>
 </html>

@@ -1,12 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Inscription</h2>
-    {% if form.errors %}
-        {{ form.errors }}
-    {% endif %}
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >S’inscrire</button>
-    </form>
+    <div class="container center-container">
+        <h2 class="signup">Inscrivez-vous</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    {% if error.code != 'unique' %}
+                        <p class="error-message">{{ error | striptags }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.password1 }}
+                {% for error in form.password1.errors %}
+                    {% if error.code != 'password_too_short' and error.code != 'password_common' %}
+                        <p class="error-message">{{ error | striptags }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.password2 }}
+                {% for error in form.password2.errors %}
+                    {% if error.code != 'password_too_short' and error.code != 'password_common' %}
+                        <p class="error-message">{{ error | striptags }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <!-- Fonction JS pour revenir en arrière -->
+            <button type="button" onclick="window.location.href='{% url 'login' %}'">Retourner</button> 
+            <button type="submit" >S’inscrire</button>
+        </form>
+    </div>
 {% endblock content %}

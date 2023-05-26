@@ -1,0 +1,88 @@
+* {
+    background-color: white;
+}
+
+.logo {
+    font-size: 0,5rem;
+    text-align: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+h2 {
+    font-size: 1,5rem;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+  }  
+
+.right h2 {
+  margin-bottom: 4rem;
+}
+
+.left a {
+  text-decoration: none;
+  color: black;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.left {
+  text-align: center;
+  margin-left: 15rem;
+}
+
+.right {
+  text-align: center;
+  margin-right: 15rem;
+}
+
+.form-group {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+  padding: 0.5rem;
+  margin-left: -7rem;
+  margin-bottom: 1rem;
+  width: 200%;
+  text-align: center;
+}
+
+.form-group button {
+    align-self: flex-end;
+  }
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border: black 1px solid;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.form-group button {
+    margin-right: -8rem; 
+  }
+
+.signup {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.container.center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+}
