@@ -2,14 +2,30 @@
     background-color: white;
 }
 
-.logo {
-    font-size: 0,5rem;
-    text-align: center;
+.navbar {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    font-size: 0,5rem;
     padding: 1rem 0;
-    width: 100%;
+    text-align: center;
   }
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 1rem;
+}
 
 h2 {
     font-size: 1,5rem;

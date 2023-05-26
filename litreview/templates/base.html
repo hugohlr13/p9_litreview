@@ -10,6 +10,14 @@
     <body>
         <div class="navbar">
             <div class="logo">LITReview</div>
+            <ul class="nav-links">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'home' %}">Mon Flux</a></li>
+                    <li><a href="{% url 'home' %}">Mes Posts</a></li>
+                    <li><a href="{% url 'follow_users' %}">Mes Abonnements</a></li>
+                    <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
+                {% endif %}
+            </ul>
         </div>
         {% block content %}{% endblock %}
     </body>
