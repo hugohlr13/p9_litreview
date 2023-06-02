@@ -41,26 +41,24 @@ def create_ticket(request):
 
 @login_required
 def create_review(request):
+    review_form = ReviewForm()
+    ticket_form = TicketForm()
     if request.method == 'POST':
-        form = ReviewForm(request.POST, request.FILES)
-        if form.is_valid():
-            ticket = Ticket.objects.create(
-                title=form.cleaned_data['title'],
-                description=form.cleaned_data['description'],
-                image=form.cleaned_data.get('image'),
-                user=request.user
-            )
-            review = Review.objects.create(
-                ticket=ticket,
-                rating=form.cleaned_data['rating'],
-                headline=form.cleaned_data['headline'],
-                body=form.cleaned_data['body'],
-                user=request.user
-            )
+        review_form = ReviewForm(request.POST)
+        ticket_form = TicketForm(request.POST, request.FILES)
+        if all((review_form.is_valid(), ticket_form.is_valid())):
+            ticket = ticket_form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
+            review = review_form.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
             return redirect('home')
     else:
-        form = ReviewForm()
-    return render(request, 'feed/create_review.html', {'form': form})
+        review_form = ReviewForm()
+        ticket_form = TicketForm()
+    return render(request, 'feed/create_review.html', {'review_form': review_form, 'ticket_form': ticket_form})
 
 @login_required
 def review_snippet(request, review_id):

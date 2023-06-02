@@ -16,20 +16,26 @@ class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         fields = ['title', 'description', 'image']
+        labels = {'title': 'Titre'}
+
+RATING_CHOICES = [
+    ('0', '0'),
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
+]
 
 class ReviewForm(forms.ModelForm):
-    title = forms.CharField(max_length=128)
-    description = forms.CharField(max_length=2048, widget=forms.Textarea)
-    image = forms.ImageField(required=False)
-    rating = forms.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(5)]
-    )
-    headline = forms.CharField(max_length=128)
-    body = forms.CharField(max_length=8192, widget=forms.Textarea)
 
+    rating = forms.TypedChoiceField(
+        widget=forms.RadioSelect, choices=RATING_CHOICES, coerce=int
+    )
+    
     class Meta:
         model = Review
-        fields = ('title', 'description', 'image', 'rating', 'headline', 'body')
-
+        fields = ('headline', 'rating', 'body')
+        labels = {'headline': 'Titre', 'rating': 'Note', 'body': 'Commentaire'}
 
 

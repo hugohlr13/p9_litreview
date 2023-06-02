@@ -2,18 +2,26 @@
     background-color: white;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .navbar {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    display: flex;
-    justify-content: center;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 
 .logo {
-    font-size: 0,5rem;
-    padding: 1rem 0;
-    text-align: center;
-  }
+  font-size: 1rem;
+  text-align: center;
+  margin: 0 auto;
+  flex-grow: 1;
+}
 
 .nav-links {
   list-style: none;
@@ -21,10 +29,25 @@
   align-items: center;
   margin: 0;
   padding: 0;
+  margin-left: auto;
 }
 
 .nav-links li {
   margin-left: 1rem;
+}
+
+.nav-links a {
+    color: black;
+    text-decoration: none; 
+  }
+
+h1 {
+    font-size: 1rem;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 h2 {
@@ -86,6 +109,28 @@ button {
   cursor: pointer;
 }
 
+.button {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    border: black 1px solid;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none; 
+    color: black;
+  }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.button-container a {
+    margin-right: 2rem;
+  }
+  
+
 .form-group button {
     margin-right: -8rem; 
   }
@@ -102,3 +147,50 @@ button {
     align-items: center;
     height: 100vh;
 }
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.container {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  margin-bottom: 3rem;
+}
+
+.button-container-formticket {
+  text-align: right;
+}
+
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.container-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
