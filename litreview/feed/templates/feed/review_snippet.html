@@ -1,7 +1,11 @@
-{% load static %}
-
 <div class="snippet">
   <h3>{{ review.ticket.title }}</h3>
+  {% if request.user == review.user %}
+    <p>Vous avez publié une critique</p>
+  {% else %}
+    <p>Par {{ review.user.username }}</p>
+  {% endif %}
+  <p>Posté le {{ review.time_created|date:"d/m/Y à H:i" }}</p>
   <p>{{ review.headline }}</p>
   <p>{{ review.body }}</p>
   <p>Note : {{ review.rating }}</p>
