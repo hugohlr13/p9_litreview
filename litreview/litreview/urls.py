@@ -32,6 +32,7 @@ urlpatterns = [
     path('follow-users/', feed.views.follow_users, name='follow_users'),
     path('review/<int:review_id>/', feed.views.review_snippet, name='review_snippet'),
     path('ticket/<int:ticket_id>/', feed.views.ticket_snippet, name='ticket_snippet'),
+    path('create_review_to_ticket/<int:ticket_id>/', feed.views.create_review_to_ticket, name='create_review_to_ticket'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,5 @@
 from itertools import chain
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import CharField, Value
 from .forms import TicketForm, ReviewForm, FollowUsersForm
@@ -69,6 +69,20 @@ def review_snippet(request, review_id):
 def ticket_snippet(request, ticket_id):
     ticket = Ticket.objects.get(id=ticket_id)
     return render(request, 'feed/ticket_snippet.html', {'ticket': ticket})
+
+@login_required
+def create_review_to_ticket(request, ticket_id):
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.ticket = get_object_or_404(Ticket, id=ticket_id)
+            review.save()
+            return redirect('home')
+    else:
+        form = ReviewForm()
+    return render(request, 'feed/create_review_to_ticket.html', {'form': form})
 
 
 @login_required

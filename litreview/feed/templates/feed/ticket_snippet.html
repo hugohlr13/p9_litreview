@@ -2,12 +2,14 @@
 
 <div class="review-ticket">
   <h3>{{ ticket.title }}</h3>
-  {% if show_user_info %}
-    <p>Par {{ ticket.user.username }}</p>
-    <p>Posté le {{ ticket.time_created|date:"d/m/Y à H:i" }}</p>
-  {% endif %}
   <p>{{ ticket.description }}</p>
   {% if ticket.image %}
     <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
   {% endif %}
+
+  {% if not ticket.review %}
+    <a href="{% url 'create_review_to_ticket' ticket.id %}" class="button">Créer une critique</a>
+  {% endif %}
 </div>
+
+

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Créer une critique</h1>
+<div class="form-container container">
+    <form method="post" enctype="multipart/form-data" class="review-form">
+        {% csrf_token %}
+        <div class="form-field">
+            <label for="id_rating" class="form-label">Note</label>
+            <br><br>
+            {{ form.rating }}
+        </div>
+        <div class="form-field">
+            <label for="id_headline" class="form-label">Titre de la critique</label>
+            <br><br>
+            {{ form.headline }}
+        </div>
+        <div class="form-field">
+            <label for="id_body" class="form-label">Texte de la critique</label>
+            <br><br>
+            {{ form.body }}
+        </div>
+        <div class="button-container-formticket">
+            <button type="submit" class="button">Envoyer</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
