@@ -33,6 +33,11 @@ urlpatterns = [
     path('review/<int:review_id>/', feed.views.review_snippet, name='review_snippet'),
     path('ticket/<int:ticket_id>/', feed.views.ticket_snippet, name='ticket_snippet'),
     path('create_review_to_ticket/<int:ticket_id>/', feed.views.create_review_to_ticket, name='create_review_to_ticket'),
+    path('posts/', feed.views.my_posts, name='my_posts'),
+    path('edit_review/<int:review_id>/', feed.views.edit_review, name='edit_review'),
+    path('delete_review/<int:review_id>/', feed.views.delete_review, name='delete_review'),
+    path('edit_ticket/<int:ticket_id>/', feed.views.edit_ticket, name='edit_ticket'),
+    path('delete_ticket/<int:ticket_id>/', feed.views.delete_ticket, name='delete_ticket'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

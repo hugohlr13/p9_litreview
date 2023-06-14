@@ -1,11 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="button-container">
-    <a href="{% url 'create_ticket' %}" class="button">Demander une critique</a>
-    <a href="{% url 'create_review' %}" class="button">Créer une critique</a>        
-</div>
-
 {% for post in posts %}
     {% if post.content_type == 'REVIEW' %}
     <div class="feed-container">
@@ -16,6 +11,11 @@
         {% if post.ticket %}
             {% include 'feed/ticket_snippet.html' with ticket=post.ticket show_user_info=False %}
         {% endif %}
+        <div class="button-container">
+            <a href="{% url 'edit_review' post.id %}" class="button">Modifier</a> 
+            <a href="{% url 'delete_review' post.id %}" class="button">Supprimer</a>
+        </div>
+
     </div>
     {% elif post.content_type == 'TICKET' %}
     <div class="feed-container">
@@ -23,7 +23,12 @@
             {{ post.time_created|date:"H:i, d/m/Y" }}
         </div>    
         {% include 'feed/ticket_snippet.html' with ticket=post show_user_info=True %}
+        <div class="button-container"> 
+            <a href="{% url 'edit_ticket' post.id %}" class="button">Modifier</a> 
+            <a href="{% url 'delete_ticket' post.id %}" class="button">Supprimer</a>
+        </div>
     </div>
     {% endif %}
 {% endfor %}
 {% endblock content %}
+

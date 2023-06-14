@@ -1,27 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Suivre des utilisateurs</h2>
+    <h2 class="followers">Suivre des utilisateurs</h2>
     <form method="post">
-        {{ form.followed_user.label_tag }} {{ form.followed_user }}
         {% csrf_token %}
-        <button type="submit" >Confirmer</button>
+        <div class="form-group-followers">
+            {{ search_form.username.label_tag }} {{ search_form.username }} <button type="submit">Envoyer</button>
+        </div>
     </form>
-    <h3>Abonnements</h3>
-    <ul>
-        {% for follow in following %}
-            <li>{{ follow.followed_user.username }}</li>
+    {% if searched_users %}
+        <ul class="center-list">
+            {% for user in searched_users %}
+                <li>
+                    {{ user.username }}
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" name="follow" value="{{ user.id }}">Suivre</button>
+                    </form>
+                </li>
+            {% empty %}
+                {% if search_performed %}
+                    <p>Aucun utilisateur trouvé</p>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h2 class="followers">Abonnements</h2>
+    <ul class="center-list">
+    {% for follow in following %}
+        <li>
+            <span>{{ follow.followed_user.username }}</span>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="unfollow" value="{{ follow.followed_user.id }}">Se désabonner</button>
+            </form>
+        </li>
         {% empty %}
-            <li>Aucun abonnement.</li>
-        {% endfor %}
+        <li>Aucun abonnement</li>
+    {% endfor %} 
     </ul>
-    <h3>Abonnés</h3>
-    <ul>
+    <h2 class="followers">Abonnés</h2>
+    <ul class="center-list">
         {% for follow in followers %}
             <li>{{ follow.user.username }}</li>
         {% empty %}
-            <li>Aucun abonné.</li>
+            <li>Aucun abonné</li>
         {% endfor %}
     </ul>
 {% endblock content %}
-
-

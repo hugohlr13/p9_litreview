@@ -1,15 +1,19 @@
 {% load static %}
 
 <div class="review-ticket">
-  <h3>{{ ticket.title }}</h3>
+  {% if ticket.user == ticket.user %}
+    <p>Vous avez demandé une critique</p>
+  {% else %}
+    <p>{{ ticket.user.username }} a demandé une critique</p>
+  {% endif %}  
+  <p>{{ ticket.title }}</p>
   <p>{{ ticket.description }}</p>
   {% if ticket.image %}
     <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
   {% endif %}
 
-  {% if not ticket.review %}
+  {% if not ticket.review_set.exists %}
     <a href="{% url 'create_review_to_ticket' ticket.id %}" class="button">Créer une critique</a>
   {% endif %}
 </div>
-
 

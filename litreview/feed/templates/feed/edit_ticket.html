@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Modifier une critique </h1>
+  <div class="form-container container">
+    <form method="post" enctype="multipart/form-data" class="review-form">
+      {% csrf_token %}
+      <div class="form-field">
+        <label for="id_title" class="form-label">Titre</label>
+        <br><br>
+        {{ form.title }}
+      </div>
+      <div class="form-field">
+        <label for="id_description" class="form-label">Description</label>
+        <br><br>
+        {{ form.description }}
+      </div>
+      <div class="form-field">
+        <label for="id_image" class="form-label">Image</label>
+        <br><br>
+        {{ form.image }}
+      </div>
+      <div class="button-container-formticket">
+        <button type="submit" class="button">Envoyer</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

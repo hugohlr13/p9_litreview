@@ -5,6 +5,13 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+class UserSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=150,
+        label='',
+        widget=forms.TextInput(attrs={'placeholder': 'Nom d\'utilisateur'})
+        )
+
 class FollowUsersForm(forms.ModelForm):
     followed_user = forms.ModelChoiceField(queryset=User.objects.all())
 
