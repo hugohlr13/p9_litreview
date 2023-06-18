@@ -3,6 +3,7 @@ from django.db import models
 
 
 class User(AbstractUser):
+    """Custom user model"""
 
     CREATOR = "CREATOR"
     SUBSCRIBER = "SUBSCRIBER"

@@ -12,6 +12,8 @@ from .utils import get_users_viewable_reviews, get_users_viewable_tickets
 
 @login_required
 def feed(request):
+    """Display the user's feed."""
+
     reviews = get_users_viewable_reviews(request.user)
     # returns queryset of reviews
     reviews = reviews.annotate(content_type=Value("REVIEW", CharField()))
@@ -30,6 +32,8 @@ def feed(request):
 
 @login_required
 def create_ticket(request):
+    """Create a ticket."""
+
     if request.method == "POST":
         form = TicketForm(request.POST, request.FILES)
         if form.is_valid():
@@ -44,6 +48,8 @@ def create_ticket(request):
 
 @login_required
 def create_review(request):
+    """Create a review."""
+
     review_form = ReviewForm()
     ticket_form = TicketForm()
     if request.method == "POST":
@@ -70,18 +76,24 @@ def create_review(request):
 
 @login_required
 def review_snippet(request, review_id):
+    """Display a review."""
+
     review = Review.objects.get(id=review_id)
     return render(request, "feed/review_snippet.html", {"review": review})
 
 
 @login_required
 def ticket_snippet(request, ticket_id):
+    """Display a ticket."""
+
     ticket = Ticket.objects.get(id=ticket_id)
     return render(request, "feed/ticket_snippet.html", {"ticket": ticket})
 
 
 @login_required
 def create_review_to_ticket(request, ticket_id):
+    """Create a review to a ticket."""
+
     ticket = get_object_or_404(Ticket, id=ticket_id)
     if Review.objects.filter(ticket=ticket).exists():
         # Vous pouvez choisir de rediriger l'utilisateur vers une autre page
@@ -102,6 +114,8 @@ def create_review_to_ticket(request, ticket_id):
 
 @login_required
 def my_posts(request):
+    """Display the user's posts."""
+
     reviews = Review.objects.filter(user=request.user).annotate(
         content_type=Value("REVIEW", CharField())
     )
@@ -116,6 +130,8 @@ def my_posts(request):
 
 @login_required
 def edit_review(request, review_id):
+    """Edit a review."""
+
     review = get_object_or_404(Review, id=review_id, user=request.user)
     if request.method == "POST":
         form = ReviewForm(request.POST, instance=review)
@@ -129,6 +145,8 @@ def edit_review(request, review_id):
 
 @login_required
 def delete_review(request, review_id):
+    """Delete a review."""
+
     review = get_object_or_404(Review, id=review_id, user=request.user)
     if request.method == "POST":
         review.delete()
@@ -138,6 +156,8 @@ def delete_review(request, review_id):
 
 @login_required
 def edit_ticket(request, ticket_id):
+    """Edit a ticket."""
+
     ticket = get_object_or_404(Ticket, id=ticket_id, user=request.user)
     if request.method == "POST":
         form = TicketForm(request.POST, instance=ticket)
@@ -151,6 +171,8 @@ def edit_ticket(request, ticket_id):
 
 @login_required
 def delete_ticket(request, ticket_id):
+    """Delete a ticket."""
+
     ticket = get_object_or_404(Ticket, id=ticket_id, user=request.user)
     if request.method == "POST":
         ticket.delete()
@@ -163,6 +185,8 @@ User = get_user_model()
 
 @login_required
 def follow_users(request):
+    """Follow users."""
+    
     search_form = UserSearchForm()
     searched_users = User.objects.none()
     search_performed = False

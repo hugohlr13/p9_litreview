@@ -7,6 +7,8 @@ User = get_user_model()
 
 
 class UserSearchForm(forms.Form):
+    """Form to search for a user by username."""
+
     username = forms.CharField(
         max_length=150,
         label="",
@@ -15,6 +17,8 @@ class UserSearchForm(forms.Form):
 
 
 class FollowUsersForm(forms.ModelForm):
+    """Form to follow a user."""
+
     followed_user = forms.ModelChoiceField(queryset=User.objects.all())
 
     class Meta:
@@ -23,6 +27,8 @@ class FollowUsersForm(forms.ModelForm):
 
 
 class TicketForm(forms.ModelForm):
+    """Form to create a ticket."""
+
     class Meta:
         model = Ticket
         fields = ["title", "description", "image"]
@@ -40,6 +46,7 @@ RATING_CHOICES = [
 
 
 class ReviewForm(forms.ModelForm):
+    """Form to create a review."""
 
     rating = forms.TypedChoiceField(
         widget=forms.RadioSelect, choices=RATING_CHOICES, coerce=int

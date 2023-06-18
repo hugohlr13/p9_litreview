@@ -6,6 +6,8 @@ from . import forms
 
 
 def login_page(request):
+    """Log in a user"""
+
     form = forms.LoginForm()
     message = ""
     if request.method == "POST":
@@ -26,11 +28,15 @@ def login_page(request):
 
 
 def logout_user(request):
+    """Log out a user"""
+
     logout(request)
     return redirect("login")
 
 
 def signup_page(request):
+    """Sign up a user"""
+    
     form = forms.SignupForm()
     message = ""
     if request.method == "POST":
