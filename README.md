@@ -29,6 +29,7 @@ Install Python 3.11: https://www.python.org/
 - Position in the folder litreview.
 - Use the command : python3 manage.py runserver 
 - Test the application : http://127.0.0.1:8000/ 
+- Generate a new flake8-html file: flake8 --config=flake8.ini --format=html --htmldir=flake-report
 
 ## Author
 

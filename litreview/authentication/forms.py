@@ -10,9 +10,6 @@ class LoginForm(forms.Form):
     )
 
 
-from django.contrib.auth.forms import UserCreationForm
-
-
 class SignupForm(UserCreationForm):
     username = forms.CharField(
         label="",

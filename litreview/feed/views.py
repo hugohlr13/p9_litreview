@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import CharField, Value
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import FollowUsersForm, ReviewForm, TicketForm, UserSearchForm
+from .forms import ReviewForm, TicketForm, UserSearchForm
 from .models import Review, Ticket, UserFollows
 from .utils import get_users_viewable_reviews, get_users_viewable_tickets
 

@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.core.validators import MaxValueValidator, MinValueValidator
 
-from .models import Review, Ticket, UserFollows
+from .models import Review, Ticket
 
 User = get_user_model()
 
