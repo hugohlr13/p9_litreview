@@ -130,6 +130,16 @@ button {
     margin-right: 2rem;
   }
   
+.button-container-feed {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.button-container-feed a {
+    margin-right: 2rem;
+  }
 
 .form-group button {
     margin-right: -8rem; 
