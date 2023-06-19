@@ -1,8 +1,7 @@
 from django.conf import settings
-from PIL import Image
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.conf import settings
+from PIL import Image
 
 
 class Ticket(models.Model):

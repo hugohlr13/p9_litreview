@@ -14,7 +14,7 @@ class LoginForm(forms.Form):
 
 class SignupForm(UserCreationForm):
     """Form to sign up a user : username, password and password confirmation"""
-    
+
     username = forms.CharField(
         label="",
         max_length=150,

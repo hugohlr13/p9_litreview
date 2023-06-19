@@ -96,7 +96,7 @@ def create_review_to_ticket(request, ticket_id):
 
     ticket = get_object_or_404(Ticket, id=ticket_id)
     if Review.objects.filter(ticket=ticket).exists():
-        return redirect("home")  
+        return redirect("home")
     if request.method == "POST":
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -184,7 +184,7 @@ User = get_user_model()
 @login_required
 def follow_users(request):
     """Follow users."""
-    
+
     search_form = UserSearchForm()
     searched_users = User.objects.none()
     search_performed = False

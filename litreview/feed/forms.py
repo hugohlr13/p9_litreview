@@ -34,6 +34,7 @@ class TicketForm(forms.ModelForm):
         fields = ["title", "description", "image"]
         labels = {"title": "Titre"}
 
+
 RATING_CHOICES = [
     ("0", "0"),
     ("1", "1"),

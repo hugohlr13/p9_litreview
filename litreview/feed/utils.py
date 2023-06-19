@@ -13,13 +13,13 @@ def get_users_viewable_tickets(user):
     tickets = Ticket.objects.filter(user__in=followed_users) | Ticket.objects.filter(
         user=user
     )
-    tickets = tickets.exclude(review__isnull=False) 
+    tickets = tickets.exclude(review__isnull=False)
     return tickets.distinct()
 
 
 def get_users_viewable_reviews(user):
     """Return a queryset of reviews that the user can see"""
-    
+
     followed_users = UserFollows.objects.filter(user=user).values_list(
         "followed_user", flat=True
     )
@@ -27,4 +27,3 @@ def get_users_viewable_reviews(user):
         user=user
     )
     return reviews.distinct()
-

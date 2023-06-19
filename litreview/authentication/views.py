@@ -36,7 +36,7 @@ def logout_user(request):
 
 def signup_page(request):
     """Sign up a user"""
-    
+
     form = forms.SignupForm()
     message = ""
     if request.method == "POST":
