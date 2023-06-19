@@ -1,7 +1,7 @@
 {% load static %}
 
 <div class="review-ticket">
-  {% if ticket.user == ticket.user %}
+  {% if request.user == ticket.user %}
     <p>Vous avez demandé une critique</p>
   {% else %}
     <p>{{ ticket.user.username }} a demandé une critique</p>
