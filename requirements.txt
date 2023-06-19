@@ -3,3 +3,4 @@ Django==4.2
 sqlparse==0.4.3
 flake8==6.0.0
 flake8-html==0.4.3
+Pillow==9.5.0

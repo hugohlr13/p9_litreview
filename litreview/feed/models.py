@@ -1,6 +1,8 @@
 from django.conf import settings
+from PIL import Image
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.conf import settings
 
 
 class Ticket(models.Model):
@@ -11,6 +13,17 @@ class Ticket(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     image = models.ImageField(null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.image:
+            img = Image.open(self.image.path)
+
+            if img.height > 200 or img.width > 200:
+                output_size = (200, 200)
+                img.thumbnail(output_size)
+                img.save(self.image.path)
 
 
 class Review(models.Model):
@@ -32,7 +45,7 @@ class Review(models.Model):
 
 class UserFollows(models.Model):
     """Model to represent a user following another user."""
-    
+
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="following"
     )
