@@ -96,9 +96,7 @@ def create_review_to_ticket(request, ticket_id):
 
     ticket = get_object_or_404(Ticket, id=ticket_id)
     if Review.objects.filter(ticket=ticket).exists():
-        # Vous pouvez choisir de rediriger l'utilisateur vers une autre page
-        # ou afficher un message d'erreur ici
-        return redirect("home")  # rediriger vers la page d'accueil par exemple
+        return redirect("home")  
     if request.method == "POST":
         form = ReviewForm(request.POST)
         if form.is_valid():
