@@ -107,7 +107,7 @@ def create_review_to_ticket(request, ticket_id):
             return redirect("home")
     else:
         form = ReviewForm()
-    return render(request, "feed/create_review_to_ticket.html", {"form": form})
+    return render(request, "feed/create_review_to_ticket.html", {"form": form, "ticket": ticket})
 
 
 @login_required
@@ -129,7 +129,6 @@ def my_posts(request):
 @login_required
 def edit_review(request, review_id):
     """Edit a review."""
-
     review = get_object_or_404(Review, id=review_id, user=request.user)
     if request.method == "POST":
         form = ReviewForm(request.POST, instance=review)
@@ -138,7 +137,7 @@ def edit_review(request, review_id):
             return redirect("my_posts")
     else:
         form = ReviewForm(instance=review)
-    return render(request, "feed/edit_review.html", {"form": form})
+    return render(request, "feed/edit_review.html", {"form": form, "review": review})
 
 
 @login_required
